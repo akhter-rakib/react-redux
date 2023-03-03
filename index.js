@@ -1,5 +1,7 @@
 const redux = require('redux')
 const createStore = redux.createStore
+const combineReducer = redux.combineReducers
+
 const BUY_CAKE = 'BUY_CAKE'; // indicate type of the action
 const BUY_ICECREAM = 'BUY_ICECREAM';
 // Action is an object that has a type property
@@ -51,8 +53,13 @@ const iceCreamReducer = (state = initialIceCreamState, action) => {
     }
 }
 
+const rootReducer = combineReducer({
+    cake: cakeReducer,
+    iceCream: iceCreamReducer
+})
+
 // redux-store
-const store = createStore(reducer)
+const store = createStore(rootReducer)
 console.log('initiate state', store.getState())
 const unSubscribe = store.subscribe(() => console.log('updated state', store.getState()))
 store.dispatch(buyCake())
