@@ -13,3 +13,17 @@ function buyCake() {
         info: 'First Redux Action'
     }
 }
+
+const initiatState = {
+    numberOfCake: 10
+}
+
+const reducer = (state = initiatState, action) => {
+    switch (action.type) {
+        case BUY_CAKE: return {
+            ...state,
+            numberOfCake: state.numberOfCake - 1
+        }
+        default: return state
+    }
+}
